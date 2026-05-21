@@ -1,8 +1,10 @@
 # Iris ML Project Starter
 
+![Tests](https://github.com/YOUR_USERNAME/iris-ml-project-starter/actions/workflows/tests.yml/badge.svg)
+
 A structured beginner-friendly machine learning project that trains a classification model on the real Iris dataset from the UCI Machine Learning Repository.
 
-This project is intentionally simple from a modeling perspective, but professional in structure. The goal is not only to train a model, but to start moving from notebook-based experimentation toward clean, reproducible, testable, and GitHub-ready AI engineering projects.
+This project is intentionally simple from a modeling perspective, but professional in structure. The goal is not only to train a model, but to start moving from notebook-based experimentation toward clean, reproducible, testable, automatically checked, and GitHub-ready AI engineering projects.
 
 ---
 
@@ -25,6 +27,8 @@ This project demonstrates:
 - How to train and evaluate a baseline model
 - How to refactor training logic into reusable functions
 - How to add initial unit tests
+- How to add automated checks with GitHub Actions
+- How to add basic code quality checks with Ruff
 - How to save reproducible evaluation outputs
 - How to prepare a clean GitHub repository
 
@@ -32,7 +36,7 @@ This project demonstrates:
 
 ## Why This Project Matters
 
-Many junior machine learning projects are built entirely inside notebooks. Notebooks are useful for exploration, but real AI engineering work requires structure, reproducibility, testability, and clarity.
+Many junior machine learning projects are built entirely inside notebooks. Notebooks are useful for exploration, but real AI engineering work requires structure, reproducibility, testability, automation, and clarity.
 
 This project is the first step toward building production-grade AI systems by introducing a clean project layout:
 
@@ -41,6 +45,7 @@ data/       Local raw data
 outputs/    Local generated results
 src/        Python source code
 tests/      Unit tests
+.github/    GitHub automation workflows
 ```
 
 The project is intentionally small so the focus stays on engineering discipline rather than dataset complexity.
@@ -82,6 +87,9 @@ Iris-virginica
 
 ```text
 iris-ml-project-starter/
+├── .github/
+│   └── workflows/
+│       └── tests.yml             # Automated CI workflow
 ├── data/
 │   └── raw/
 │       └── iris.csv              # Downloaded locally, not committed to Git
@@ -112,6 +120,8 @@ iris-ml-project-starter/
 | Matplotlib | Plotting and saving evaluation figures |
 | scikit-learn | Model training, data splitting, and evaluation metrics |
 | pytest | Unit testing |
+| Ruff | Code linting and formatting |
+| GitHub Actions | Automated checks on push and pull requests |
 | Git | Local version control |
 | GitHub | Remote code hosting and portfolio publishing |
 
@@ -122,7 +132,7 @@ iris-ml-project-starter/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/iris-ml-project-starter.git
+git clone https://github.com/ammarkhassawneh/iris-ml-project-starter.git
 cd iris-ml-project-starter
 ```
 
@@ -271,7 +281,52 @@ pip install -r requirements.txt
 PYTHONPATH=. pytest
 ```
 
-### Why PYTHONPATH is Used Here
+---
+
+## Code Quality
+
+This project uses Ruff for basic code quality checks and formatting.
+
+Run linting:
+
+```bash
+ruff check src tests
+```
+
+Run formatting:
+
+```bash
+ruff format src tests
+```
+
+Check formatting without modifying files:
+
+```bash
+ruff format --check src tests
+```
+
+---
+
+## Continuous Integration
+
+This project uses GitHub Actions to run automated checks on every push and pull request to the `main` branch.
+
+The workflow runs:
+
+- Dependency installation
+- Ruff linting
+- Ruff formatting check
+- Unit tests with pytest
+
+Workflow file:
+
+```text
+.github/workflows/tests.yml
+```
+
+---
+
+## Why PYTHONPATH is Used Here
 
 The current project is still in an early learning structure.
 
@@ -285,14 +340,18 @@ so Python can import modules from the project root while running tests.
 
 In future lessons, this project will be refactored into a cleaner package structure, which will remove the need for manually setting `PYTHONPATH`.
 
-### Tested Components
+---
+
+## Tested Components
 
 | Component | Purpose |
 |---|---|
 | `split_features_target` | Verifies that input features and target labels are separated correctly |
 | `save_metrics` | Verifies that model metrics are written to a text file correctly |
 
-### Testing Philosophy
+---
+
+## Testing Philosophy
 
 This project starts with small, reliable tests before moving toward more advanced ML testing.
 
@@ -302,7 +361,8 @@ Later improvements will include:
 - Model training smoke tests
 - Evaluation metric checks
 - Configuration tests
-- Continuous integration with GitHub Actions
+- Continuous integration improvements
+- Package-level imports
 
 ---
 
@@ -316,6 +376,7 @@ Even though the Iris dataset is public, this project follows safe data-handling 
 - No secrets, API keys, tokens, or credentials are stored in the repository
 - The dataset source is documented clearly for reproducibility
 - The project can be rerun from source code instead of relying on committed data artifacts
+- GitHub Actions workflow permissions are limited to read-only repository content
 
 These habits are important because real client projects may involve sensitive, private, regulated, or confidential data.
 
@@ -327,8 +388,6 @@ This is the first structured version of the project. It intentionally keeps the 
 
 Current limitations:
 
-- No automated CI pipeline yet
-- No configuration file yet
 - No model persistence yet
 - No command-line interface yet
 - No experiment tracking yet
@@ -336,6 +395,8 @@ Current limitations:
 - No API or deployment layer yet
 - No package structure yet
 - No model versioning yet
+- No advanced CI matrix yet
+- No code coverage report yet
 
 These features will be introduced gradually in future lessons.
 
@@ -345,15 +406,15 @@ These features will be introduced gradually in future lessons.
 
 Planned improvements:
 
-- Improve import structure
-- Add GitHub Actions for automated tests
 - Refactor the project into a cleaner package structure
+- Remove the need for manual `PYTHONPATH`
 - Add basic data validation
 - Save the trained model to disk
 - Add a configuration file
 - Add a simple command-line interface
 - Add model evaluation reports
 - Add experiment tracking
+- Add code coverage
 - Move gradually toward a production-ready ML project structure
 
 ---
@@ -379,4 +440,3 @@ This is the foundation for building more advanced AI systems later, including AP
 ## License
 
 This project is released under the MIT License.
-

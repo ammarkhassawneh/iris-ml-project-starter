@@ -11,6 +11,8 @@ COLUMN_NAMES = [
     "petal_width_cm",
     "species",
 ]
+
+
 def download_iris_data() -> None:
     """Download the Iris dataset from UCI and save it locally."""
 
@@ -22,7 +24,7 @@ def download_iris_data() -> None:
     print(f"Dataset saved to: {OUTPUT_PATH}")
     print(f"Rows: {len(dataset)}")
     print(f"Columns: {list(dataset.columns)}")
-    
+
+
 if __name__ == "__main__":
     download_iris_data()
-

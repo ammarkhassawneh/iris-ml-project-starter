@@ -39,4 +39,3 @@ def test_save_metrics_writes_accuracy_file(tmp_path: Path) -> None:
 
     assert metrics_path.exists()
     assert metrics_path.read_text(encoding="utf-8") == "accuracy=0.9667\n"
-    
